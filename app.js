@@ -1,10 +1,11 @@
 const express = require('express');
 const dbConnect = require("./db/db.Connect");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 var bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const auth = require('./auth/auth');
 const morgan = require('morgan');
+const cors = require('cors');
 
 //express app
 const app = express();
@@ -12,7 +13,7 @@ const app = express();
 //connect to db
 dbConnect();
 
-// Curb Cores Error by adding a header here
+// Curb Cors Error by adding a header here
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -25,6 +26,13 @@ app.use((req, res, next) => {
     );
     next();
   });
+
+  const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 const User = require("./models/userModel");
 
 app.use(bodyParser.urlencoded({ extended: false }));
