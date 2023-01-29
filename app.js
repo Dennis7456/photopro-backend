@@ -54,12 +54,18 @@ app.get('/', (req, res) => {
 
 //register user
 app.post("/register", (req, res) => {
+    console.log(req.body.first_name);
+    console.log(req.body.last_name);
+    console.log(req.body.username);
     console.log(req.body.email);
     console.log(req.body.password);
     bcrypt
     .hash(req.body.password, 10)
     .then((hashedPassword) => {
         const user = new User({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            username: req.body.username,
             email: req.body.email,
             password: hashedPassword
         })
@@ -133,11 +139,30 @@ app.post("/login", (req, res) => {
 })
 
 // free endpoint
-app.get("/free-endpoint", (request, response) => {
-    response.json({ message: "You are free to access me anytime" });
+app.get("/free-endpoint", (req, res) => {
+    res.json({ message: "You are free to access me anytime" });
   });
   
 // authentication endpoint
 app.get("/auth-endpoint", auth, (req, res) => {
     res.json({ message: "You are authorized to access me" });
   });
+
+
+app.get("/profile", auth, (req, res) => {
+    console.log(req.body);
+    User.findOne({ email: req.body.email })
+    .then((user) => {
+        console.log(user);
+        res.send(user);
+    })
+    .catch((error) => {
+        res.status(404).send({
+            message: "User Not Found",
+            error
+        })
+    });
+
+    const user = req.user;
+    
+})
