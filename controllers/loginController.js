@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 //login user
 const login = async (req, res) => {
-    console.log(req.body.email);
+    console.log(req.user);
     User.findOne({ email: req.body.email })
     .then((user) => {
         bcrypt.compare(req.body.password, user.password)

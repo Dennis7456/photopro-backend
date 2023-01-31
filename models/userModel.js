@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
+const Schema = mongoose.Schema
 const emailFormat = /^[a-zA-Z0-9_.+]+(?<!^[0-9]*)@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
     first_name: {
         type: String,
         required: [true, "Please enter your first name"],
@@ -39,6 +39,9 @@ const UserSchema = new mongoose.Schema({
         required: false,
         unique: false
     },
+    albums: [
+        {type: Schema.Types.ObjectId, ref: 'Album'}
+        ],
     password: {
         type: String,
         required: [true, "Please enter a password"],
@@ -46,4 +49,4 @@ const UserSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
-module.exports = mongoose.model.Users || mongoose.model("Users", UserSchema);
+module.exports = mongoose.model.User || mongoose.model("User", UserSchema);

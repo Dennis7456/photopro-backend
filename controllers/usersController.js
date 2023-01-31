@@ -1,7 +1,8 @@
 const User = require("../models/userModel");
 
+
 const profile = async (req,res) => {
-    console.log(req.user.userEmail);
+    console.log(req);
     User.findOne({ email: req.user.userEmail })
     .then((user) => {
         res.send(user);
@@ -17,7 +18,13 @@ const profile = async (req,res) => {
     const user = req.user;
 }
 
+const user_details = async (req,res) => {
+    //console.log(req);
+    // User.findOne({})
+}
+
 module.exports = {
-    profile
+    profile,
+    user_details
     
 }

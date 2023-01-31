@@ -3,7 +3,7 @@ const User = require("../models/userModel");
 
 //register user
 const register = async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     bcrypt
     .hash(req.body.password, 10)
     .then((hashedPassword) => {
