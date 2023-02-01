@@ -18,13 +18,22 @@ const profile = async (req,res) => {
     const user = req.user;
 }
 
-const user_details = async (req,res) => {
-    //console.log(req);
-    // User.findOne({})
+const users_index = async (req,res) => {
+    console.log(req);
+    User.find()
+    .then((users) => {
+        res.send(users);
+    })
+    .catch((error) => {
+        res.status(404).send({
+            message: "Erro fetching users",
+            error
+        })
+    });
 }
 
 module.exports = {
     profile,
-    user_details
+    users_index
     
 }

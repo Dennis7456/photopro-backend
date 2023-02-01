@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 
-const PhotosSchema = new mongoose.Schema({
+const PhotoSchema = new mongoose.Schema({
     name: String,
-    albumId: mongoose.Schema.Types.ObjectId, ref: 'Albums',
+    album: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Album'
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Category'
+    },
     slug: String
 });
 
-module.exports = mongoose.model.Photos || mongoose.model("Photos", PhotosSchema);
+module.exports = mongoose.model.Photo || mongoose.model("Photo", PhotoSchema);

@@ -42,6 +42,9 @@ const UserSchema = new Schema({
     albums: [
         {type: Schema.Types.ObjectId, ref: 'Album'}
         ],
+    photos: [
+        {type: Schema.Types.ObjectId, ref: 'Photo'}
+        ],
     password: {
         type: String,
         required: [true, "Please enter a password"],
