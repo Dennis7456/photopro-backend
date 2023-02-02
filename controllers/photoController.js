@@ -37,9 +37,38 @@ const photo_filter_photos = async (req, res) => {
         console.log(error);
     });
 }
+
+const filterPhotos = async (req, res) => {
+    console.log(req);
+    Photo.find({ category: req.params.category })
+    .then((photos) => {
+        res.status(200).json(photos);
+        console.log(photos);
+    })
+    .catch((error) => {
+        res.status(404).send(error);
+        console.log(error);
+    });
+}
+
+const getAllPhotos = async (req, res) => {
+    console.log(req);
+    Photo.find()
+    .then((photos) => {
+        res.status(200).json(photos);
+        console.log(photos);
+    })
+    .catch((error) => {
+        res.status(404).send(error);
+        console.log(error);
+    });
+}
+
 module.exports = {
     photo_create_photo,
-    photo_filter_photos
+    photo_filter_photos,
+    getAllPhotos,
+    filterPhotos
     
     
 }
