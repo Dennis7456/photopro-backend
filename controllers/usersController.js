@@ -36,7 +36,7 @@ const edit_profile = async (req, res) => {
     console.log(req);
 
     const filter = { email: req.user.userEmail };
-    const update = {first_name: req.body.firstName, last_name: req.body.lastName, username: req.body.userName, email: req.body.email, profile_image: req.body.profileImage}
+    const update = {first_name: req.body.firstName, last_name: req.body.lastName, username: req.body.userName, email: req.body.email, bio: req.body.bio, profile_image: req.body.profileImage}
     Object.keys(update).forEach((k) => update[k] === "" && delete update[k]);
     
     User.findOneAndUpdate(filter, update)
