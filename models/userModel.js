@@ -34,7 +34,7 @@ const UserSchema = new Schema({
         required: false,
         unique: false
     },
-    image: {
+    profile_image: {
         type: String,
         required: false,
         unique: false

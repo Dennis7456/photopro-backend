@@ -6,9 +6,12 @@ const PhotoSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Album'
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Category'
+        type: String,
     },
-    slug: String
+    slug: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = mongoose.model.Photo || mongoose.model("Photo", PhotoSchema);

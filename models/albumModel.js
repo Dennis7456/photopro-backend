@@ -9,7 +9,8 @@ const AlbumSchema = new Schema({
     },
     photos: [
     { type: Schema.Types.ObjectId, ref: 'Photo'}
-    ]
+    ],
+    cover: String
 });
 
 module.exports = mongoose.model.Album || mongoose.model("Album", AlbumSchema);

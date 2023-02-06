@@ -1,7 +1,8 @@
 const Photo = require('../models/photoModel');
+const Album = require('../models/albumModel');
 
 const photo_create_photo = async (req,res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
     const photo = new Photo({
     	name: req.body.name,
@@ -12,18 +13,31 @@ const photo_create_photo = async (req,res) => {
 
     photo.save()
     .then((result) => {
+        
         res.status(201).send({
-            message: "Photo uploaded successfully",
+            message: "Photo created successfully",
             result
         })
     })
     .catch((error) => {
         res.status(500).send({
-            message: "Error uploading photo",
+            message: "Error creating photo",
             error
         });
     });
-}
+
+    const albumById = await Album.findOne({ id: req.body.albumId });
+    //console.log(albumById.photos);
+    albumById.photos.push(photo);
+    albumById.save()
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.log(error);
+
+});
+};
 
 const photo_filter_photos = async (req, res) => {
     console.log(req);
