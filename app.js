@@ -10,7 +10,10 @@ const userRoutes = require('./routes/userRoutes');
 const loginRoute = require('./routes/loginRoute');
 const registerRoute = require('./routes/registerRoute');
 const freeRoute = require('./routes/freeRoute');
-const protectedRoute = require('./routes/protected/protectedRoute')
+const protectedRoute = require('./routes/protected/protectedRoute');
+const albumRoute = require('./routes/albumRoutes');
+const photoRouter = require("./routes/photoRouter");
+const categoryRouter = require("./routes/categoryRouter");
 
 //express app
 const app = express();
@@ -62,3 +65,6 @@ app.use(loginRoute);
 app.use(registerRoute);
 app.use(freeRoute);
 app.use(protectedRoute);
+app.use(albumRoute);
+app.use(photoRouter);
+app.use(categoryRouter);
