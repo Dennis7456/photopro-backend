@@ -66,7 +66,7 @@ const filterPhotos = async (req, res) => {
 }
 
 const getAllPhotos = async (req, res) => {
-    console.log(req);
+    console.log(req.body);
     Photo.find()
     .then((photos) => {
         res.status(200).json(photos);
@@ -78,11 +78,43 @@ const getAllPhotos = async (req, res) => {
     });
 }
 
+const photo_get_photo = async (req, res) => {
+    console.log(req.body);
+    Photo.findOne({ id: req.body.photoId })
+    .then((result) => {
+        res.status(200).send(result);
+    })
+    .catch((error) => {
+        res.status(500).send(error);
+    })
+}
+
+const photo_edit_photo = async (req, res) => {
+    console.log(req.body);
+    Photo.findOneAndUpdate({ id: req.body.photoId }, {
+        name: req.body.name
+    })
+    .then((result) => {
+        res.status(201).send({
+            message: "Name updated successfully",
+            result
+        })
+    })
+    .catch((error) => {
+        res.status(500).send({
+            message: "Error updating name",
+            error
+        })
+    })
+}
+
 module.exports = {
     photo_create_photo,
     photo_filter_photos,
     getAllPhotos,
-    filterPhotos
+    filterPhotos,
+    photo_get_photo,
+    photo_edit_photo
     
     
 }
