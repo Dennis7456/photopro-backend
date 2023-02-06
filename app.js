@@ -14,6 +14,7 @@ const protectedRoute = require('./routes/protected/protectedRoute');
 const albumRoute = require('./routes/albumRoutes');
 const photoRouter = require("./routes/photoRouter");
 const categoryRouter = require("./routes/categoryRouter");
+const ORIGIN = require("./config/httpClient");
 
 //express app
 const app = express();
@@ -36,7 +37,7 @@ app.use((req, res, next) => {
   });
 
   const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin: ORIGIN, 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
