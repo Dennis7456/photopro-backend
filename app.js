@@ -36,8 +36,10 @@ app.use((req, res, next) => {
     next();
   });
 
+console.log(ORIGIN)
+
   const corsOptions ={
-    origin: ORIGIN, 
+    origin: ORIGIN,
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
