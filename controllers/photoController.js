@@ -80,7 +80,7 @@ const getAllPhotos = async (req, res) => {
 
 const photo_get_photo = async (req, res) => {
     console.log(req.body);
-    Photo.findOne({ id: req.body.photoId })
+    Photo.findById(req.body.photoId)
     .then((result) => {
         res.status(200).send(result);
     })
